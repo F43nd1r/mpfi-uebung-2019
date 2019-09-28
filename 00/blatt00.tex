@@ -1,0 +1,216 @@
+ \input{../preamble.tex}
+
+\begin{document}
+	\section*{Aufgabe 1: Vereinfachen und Kürzen}
+	Vereinfachen Sie die folgenden Ausdrücke
+	\begin{enumeralph}
+		\item $\frac{x\sqrt{x}+x\sqrt{y}}{(x-y)} - \sqrt{x} - \frac{\sqrt{xy}}{\sqrt{x}-\sqrt{y}}$
+		\begin{align*}
+			\frac{x\sqrt{x}+x\sqrt{y}}{(x-y)} - \sqrt{x} - \frac{\sqrt{xy}}{\sqrt{x}-\sqrt{y}}&=\frac{x\cancel{(\sqrt{x} + \sqrt{y})}}{\cancel{(\sqrt{x}+\sqrt{y})}(\sqrt{x}-\sqrt{y})} - \frac{\sqrt{x}(\sqrt{x}-\sqrt{y})}{\sqrt{x}-\sqrt{y}} - \frac{\sqrt{xy}}{\sqrt{x}-\sqrt{y}}\\
+			&=\frac{x-\sqrt{x}(\sqrt{x}-\sqrt{y})-\sqrt{xy}}{\sqrt{x}-\sqrt{y}}\\
+			&=\frac{\cancel{x}-\cancel{x}+\cancel{\sqrt{xy}}-\cancel{\sqrt{xy}}}{\sqrt{x}-\sqrt{y}}\\
+			&=0
+		\end{align*}
+		\item $\log_{10} (\frac{10^x}{10^3})$
+		\begin{align*}
+		\log_{10} (\frac{10^x}{10^3})&=\log_{10}(10^{x-3})\\
+		&=x-3
+		\end{align*}
+		\item $\frac{1}{1+\tan(\varphi)}+\frac{1}{1+\cot(\varphi)}$
+		\begin{align*}
+		\frac{1}{1+\tan(\varphi)}+\frac{1}{1+\cot(\varphi)}&=\frac{1}{1+\tan(\varphi)}+\frac{1}{1+\frac{1}{\tan(\varphi)}}\\
+		&=\frac{1}{1+\tan(\varphi)}+\frac{\tan(\varphi)}{\tan(\varphi)+1}\\
+		&=\frac{\cancel{1+\tan(\varphi)}}{\cancel{1+\tan(\varphi)}}\\
+		&=1
+		\end{align*}
+	\end{enumeralph}
+
+\section*{Aufgabe 2: Differentiation}
+Bestimmen Sie dir Ableitungen der folgenden Funktionen $f : \R \rightarrow \R, x \mapsto f(x)$ nach $x$:
+\begin{enumeralph}
+	\item $f(x) = a * \tan(x) + \cos(bx + c)$\\
+	\begin{align*}
+	f'(x) = \frac{a}{\cos^2(x)} - b * sin(bx+c)
+	\end{align*}
+	\item $f(x) = e^{x+y} (3 + 2x - x^2)$
+	\begin{align*}
+	f'(x) &= e^{x+y} (3+2x-x^2) + e^{x+y} (2-2x)\\
+	&=e^{x+y}(5-x^2)
+	\end{align*}
+	\item $f(x) = (3+4x^2-x^2)^{\frac{1}{2}}$
+	\begin{align*}
+	f'(x)&=\frac{1}{2}(3+3x^2)^{-\frac{1}{2}} 6x\\
+	&=\frac{3x}{\sqrt{3+3x^2}}
+	\end{align*}
+	\item $f(x)=x^x$
+	\begin{align*}
+	x^x &= e^{\ln{x^x}}\\
+	&=e^{x\ln x}\\
+	f'(x)&=e^{x \ln x}(1 \ln x  + x\frac{1}{x})\\
+	&=x^x(\ln x + 1)
+	\end{align*}
+\end{enumeralph}
+\section*{Aufgabe 3: Kurvendiskussion}
+Berechnen Sie die lokalen Extrema (Minimum und Maximum) der Funktion
+\[x \mapsto g(x) = \frac{4x^2-4x}{x^3-6x^2+12x-8}\]
+Lösung:
+\begin{align*}
+g(x)&=(4x^2-4x)(x-2)^{-3}\\
+g'(x)&=(4x^2-4x)(-3)(x-2)^{-4} + (8x-4)(x-2)^{-3}\\
+&=\frac{-12x^2+12x}{(x-2)^4} + \frac{(8x-4)(x-2)}{(x-2)^4}\\
+&=\frac{-12x^2+12x}{(x-2)^4} + \frac{8x^2-20x+8}{(x-2)^4}\\
+&=\frac{-4x^2-8x+8}{(x-2)^4}\\
+g'(x)&\overset{!}{=}0\\
+\Leftrightarrow-4x^2-8x+8&=0\\
+\Leftrightarrow x^2+2x-2&=0\\
+\Leftrightarrow x&=\frac{-2\pm\sqrt{4-4*1*(-2)}}{2*1}\\
+\Leftrightarrow x&=-1\pm\sqrt{3}
+\end{align*}
+$\Rightarrow$ Extrema bei $x = -1\pm\sqrt{3}$.
+
+\section*{Aufgabe 4: Reihen und Reihenentwicklung}
+Die Taylorreihe einer Funktion $f(x)$ am Ursprung $x=0$ ist gegeben durch
+\[f(x) = \sum_{n=0}^{\infty}\frac{1}{n!}f^{(n)}(0)x^n\approx f(0) + f'(0)x + \frac{1}{2} f''(0)x^2\]
+wobei $f(n)(0)$ die $n$-te Ableitung von $f(x)$ ausgewertet an der Stelle $x=0$ bezeichnet.  Entsprechend sind $f'(0)$ und $f''(0)$ die erste bzw. zweite Ableitung ausgewertet bei $x=0$. Bestimmen Sie damit die Taylorreihen der folgenden Funktionen bis zur zweiten Ordnung $x^2$:
+\begin{enumeralph}
+	\item $f(x) = e^x$
+	\begin{align*}
+	f(x)&\approx f(0)+f'(0)x+\frac{1}{2}f''(0)x^2\\
+	&=1+x+\frac{1}{2}x^2
+	\end{align*}
+	\item $f(x)=sin(x^2)$
+	\begin{align*}
+	f(x)&\approx f(0)+f'(0)x+\frac{1}{2}f''(0)x^2\\
+	&=(\sin(x^2))(0)+(2x\cos(x^2))(0)x+\frac{1}{2}(2\cos(x^2)-4x^2\sin(x^2))(0)x^2\\
+	&=0+0+\frac{1}{2}2x^2\\
+	&=x^2
+	\end{align*}
+\end{enumeralph}
+
+\section{Aufgabe 5: Drehungen}
+Eine Drehung um den Winkel $\varphi$ in der Ebene im $\R^2$ ist gegeben durch eine Matrix:
+\[R_2(\varphi) = \begin{bmatrix}
+\cos \varphi & -\sin \varphi\\
+\sin \varphi & \cos \varphi
+\end{bmatrix}, \varphi \in [0, 2\pi)\]
+Zeigen Sie, dass
+\begin{enumeralph}
+	\item die Drehmatrizen kommutieren, $R_2(\varphi_1)R_2(\varphi_2) =R_2(\varphi_2)R_2(\varphi_1)$
+	\begin{align*}
+	R_2(\varphi_1)R_2(\varphi_2)&=\begin{bmatrix}
+	\cos \varphi_1 & -\sin \varphi_1\\
+	\sin \varphi_1 & \cos \varphi_1
+	\end{bmatrix}\begin{bmatrix}
+	\cos \varphi_2 & -\sin \varphi_2\\
+	\sin \varphi_2 & \cos \varphi_2
+	\end{bmatrix}\\
+	&=\begin{bmatrix}
+	\cos \varphi_1 \cos \varphi_2 - \sin \varphi_1 \sin \varphi_2 & -\cos \varphi_1 \sin \varphi_2 - \sin \varphi_1 \cos \varphi_2\\
+	\cos \varphi_1 \sin \varphi_2 + \sin \varphi_1 \cos \varphi_2 &\cos \varphi_1 \cos \varphi_2 - \sin \varphi_1 \sin \varphi_2 
+	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		\cos \varphi_2 & -\sin \varphi_2\\
+		\sin \varphi_2 & \cos \varphi_2
+		\end{bmatrix}\begin{bmatrix}
+		\cos \varphi_1 & -\sin \varphi_1\\
+		\sin \varphi_1 & \cos \varphi_1
+	\end{bmatrix}\\
+	&=R_2(\varphi_2)R_2(\varphi_1)
+	\end{align*}
+	\item das Produkt $R_2(\varphi_1)R_2(\varphi_2)$ wieder zu einer Drehmatrix $R_2(\varphi_1+ \varphi_2)$ führt
+	\begin{align*}
+	\text{Additionstheorem:}\\
+	\sin(x\pm y) &= \sin(x)\cos(y) \pm \cos(x)\sin(y)\\
+	\cos(x\pm y)&= \cos(x)\cos(y) \mp \sin(x)\sin(y)\\
+	\Rightarrow R_2(\varphi_1)R_2(\varphi_2)&=\begin{bmatrix}
+	\cos(\varphi_1+\varphi_2) & -\sin(\varphi_1+\varphi_2)\\
+	\sin(\varphi_1+\varphi_2) & \cos(\varphi_1+\varphi_2)
+	\end{bmatrix}\\
+	&=R_2(\varphi_1+ \varphi_2)
+	\end{align*}
+	\item $\det R_2(\varphi) = 1$
+	\begin{align*}
+	\det R_2(\varphi)&=\cos^2(\varphi) + \sin^2(\varphi)\\
+	&=1
+	\end{align*}
+\end{enumeralph}
+
+\section{Aufgabe 6: Eigenwerte und Eigenvektoren}
+Die Eigenwertgleichung einer quadratischen $n\times n$-Matrix $M$ lautet $M\overrightarrow{x}=\lambda\overrightarrow{x}$, wobei der $n$-Vektor $\overrightarrow{x}$ einen möglichen Eigenvektor und der Skalar $\lambda$ einen zugehörigen Eigenwert bezeichnen. Die Lösungen für $\lambda$ ergeben sich durch das Nullsetzen des charakteristischen Polynoms
+\[\det(M-\lambda\mathbbm{1})=0\]
+wobei $\mathbbm{1}$ die $n$-dimensionale Einheitsmatrix ist.  Bestimmen Sie die Eigenwerte, und falls möglich die Eigenvektoren, zu folgender $3\times 3$-Matrix $M$:
+\[\begin{bmatrix}
+	1 & 2& -1\\
+	0 & 3 & 0\\
+	-1 & 2 & 1
+\end{bmatrix}\]
+Lösung:
+\begin{align*}
+\det(M-\lambda\mathbbm{1})&=\det\begin{bmatrix}
+1-\lambda & 2 & -1\\
+0 & 3 - \lambda & 0\\
+-1 & 2 & 1-\lambda
+\end{bmatrix}\\
+&=(1-\lambda)^2(3-\lambda)+ 0+0-(3-\lambda)-0-0\\
+&=(3-\lambda)((1-\lambda^2) -1)\\
+&\overset{!}{=}0\\
+\Rightarrow&\lambda_1 = 3, \lambda_2 = 0, \lambda_3 = 2\\
+\text{Einsetzen + Gaußen:}\\
+\lambda_1 = 3 &\Rightarrow \begin{bmatrix}
+-2 & 2 & -1\\
+0 & 0 & 0\\
+-1 & 2 & -2
+\end{bmatrix}\overset{III-\frac{1}{2}I}{\rightarrow}
+\begin{bmatrix}
+-2 & 2 & -1\\
+0 & 0 & 0\\
+0 & 1 & -\frac{3}{2}
+\end{bmatrix}\\
+&\Rightarrow x_1 = x_2 - \frac{1}{2}x_3, x_2 = \frac{3}{2}x_3\\
+\text{Wähle } x_3 &= 2\\
+&\Rightarrow x^{(1)} = \begin{bmatrix}
+2\\
+3\\
+2
+\end{bmatrix}\\
+\lambda_2 = 0 &\Rightarrow \begin{bmatrix}
+1 & 2 & -1\\
+0 & 3 & 0 \\
+-1 & 2 & 1
+\end{bmatrix}\overset{III+I}{\rightarrow}
+\begin{bmatrix}
+1 & 2 & -1\\
+0 & 3 & 0 \\
+0 & 4 & 0
+\end{bmatrix}\overset{III-\frac{4}{3}II}{\rightarrow}
+\begin{bmatrix}
+1 & 2 & -1\\
+0 & 3 & 0 \\
+0 & 0 & 0
+\end{bmatrix}\\
+&\Rightarrow x_1 = x_3 - 2x_2, x_2 = 0\\
+\text{Wähle } x_1 &= 1\\
+&\Rightarrow x^{(2)} = \begin{bmatrix}
+1\\
+0\\
+1
+\end{bmatrix}\\
+\lambda_3 = 2 &\Rightarrow \begin{bmatrix}
+-1 & 2 & -1\\
+0 & 1 & 0 \\
+-1 & 2 & -1
+\end{bmatrix}\overset{III-I}{\rightarrow}
+\begin{bmatrix}
+-1 & 2 & -1\\
+0 & 1 & 0 \\
+0 & 0 & 0
+\end{bmatrix}\\
+&\Rightarrow x_1 =2x_2 - x_3, x_2 = 0\\
+\text{Wähle } x_1 &= 1\\
+&\Rightarrow x^{(3)} = \begin{bmatrix}
+1\\
+0\\
+-1
+\end{bmatrix}
+\end{align*}
+\end{document}
