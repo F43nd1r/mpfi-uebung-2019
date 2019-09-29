@@ -1,0 +1,169 @@
+  \input{../preamble.tex}
+  
+\begin{document}
+	\section*{Aufgabe 1:  Bahnkurven}
+	Bewegungen  eines  Körpers/Teilchens  im  Raum  als  Funktion  der Zeit $t$ lassen  sich durch Bahnkurven$\overrightarrow{r}(t)$ darstellen. Die Geschwindigkeit und Beschleunigung lassen sich als Ableitungen nach der Zeit ermitteln. Wir betrachten zwei einfache Beispiele.
+	\begin{enumeralph}
+		\item Eine Bahnkurve werde beschrieben durch die Parameterdarstellung \[\overrightarrow{r}(t)=\begin{pmatrix}
+		a\cos(\omega t)\\
+		a\sin(\omega t)\\
+		ct
+		\end{pmatrix} \text{ mit } a, c > 0\]
+		\begin{enumeroman}
+			\item Skizzieren Sie die Bahnkurve $\overrightarrow{r}(t)$ als Funktion des eindimensionalen Parameters $t$.\\
+			\begin{tikzpicture}
+			\begin{axis}[view={60}{30},xtick=0,ytick=0,ztick=0, axis lines=middle]
+			\addplot3[domain=0:5*pi,samples = 60,samples y=0,]
+			({cos(deg(x))},
+			{sin(deg(x))},
+			{x});
+			\end{axis}
+			\end{tikzpicture}
+			\item Wie groß ist der Abstand $h=z_2 - z_1$ zweier in $z$-Richtung direkt übereinanderliegender Punkte $(a,0,z_1)$ und $(a,0,z_2)$, wobei $z_2 > z_1$?
+			\begin{align*}
+			h&=\left|\begin{pmatrix}a\\0\\z_2\end{pmatrix} - \begin{pmatrix}a\\0\\z_1\end{pmatrix}\right|\\
+			&=z_2 - z_1\\
+			&=cb_2 - cb_1\\
+			&=c(T + b_1) - cb_1\\
+			&=cT\\
+			&=c\frac{2\pi}{\omega}
+			\end{align*}
+		\end{enumeroman}
+		\item Es sei nun der Ortsvektor $\overrightarrow{r}(t)$ eines Teilchens auf einer Kreisbahn mit konstanter Winkelgeschwindigkeit $\omega$ gegeben durch \[\overrightarrow{r}(t)=\begin{pmatrix}r\cos(\omega t)\\r\sin(\omega t)\\0\end{pmatrix}\]
+		\begin{enumeroman}
+			\item Berechnen Sie den Geschwindigkeitsvektor $\overrightarrow{v}(t)=\dot{\overrightarrow{r}}(t)$ und den Beschleunigungsvektor $\overrightarrow{a}(t)=\dot{\overrightarrow{v}}(t)=\ddot{\overrightarrow{r}}(t)$
+			\begin{align*}
+			\overrightarrow{v}(t)&=\begin{pmatrix}-r\omega\sin(\omega t)\\r\omega\cos(\omega t)\\0\end{pmatrix}\\
+			\overrightarrow{a}(t)&=\begin{pmatrix}-r\omega^2\cos(\omega t)\\-r\omega^2\sin(\omega t)\\0\end{pmatrix}\\
+			\end{align*}
+			\item Skizzieren Sie die Kreisbahn des Teilchens und diskutieren Sie, in welche Richtung $\overrightarrow{r}(t)$, $\overrightarrow{v}(t)$ und $\overrightarrow{a}(t)$ relativ zum Bahnverlauf zeigen.\\
+			\begin{tikzpicture}
+			\begin{axis}[
+			axis lines = middle,
+			xlabel = $x$,
+			ylabel = {$y$},
+			xticklabels={,,},
+			yticklabels={,,},
+			axis equal
+			]
+			\addplot [domain=-180:180, samples=100] ({cos(x)},{sin(x)});
+			\draw[very thick,->, color=red](1,0) -- (1,0.5) node[above]{$\overrightarrow{v}(t)$};
+			\draw[very thick,->, color=blue](0,0) -- (1,0) node[pos=0.5, above]{$\overrightarrow{r}(t)$};
+			\draw[very thick,->, color=green](1,0) -- (0.5,0) node[pos=0.5, below]{$\overrightarrow{a}(t)$};
+			\end{axis}
+			\end{tikzpicture}\\
+			$\overrightarrow{r}(t)\bot$ Bahn, $\overrightarrow{v}(t)\parallel$ Bahn, $\overrightarrow{a}(t)\bot$ Bahn
+			\item Nehmen Sie nun an, das Teilchen sei ein Satellit der Masse $m_s$ und umkreise die Erde,mit Masse $M_E$, in einer Entfernung $r_s$.  Berechnen Sie dessen Geschwindigkeit $v_s=|\overrightarrow{v_s}(t)|$, wobei für die Gravitationskraft gilt $\overrightarrow{F_G}(\overrightarrow{r}) =-Gm_sM_E\overrightarrow{r}/r^3$ und $G$ die Newtonsche Gravitationskonstante bezeichnet. \textit{Hinweis}: Lex secunda.\\
+			\begin{align*}
+			\text{Zentripetalkraft } \overrightarrow{F_z}(\overrightarrow{r})&=m_s\overrightarrow{a_s}\\
+			\text{Es gilt } |\overrightarrow{F_G}(\overrightarrow{r})| &= | \overrightarrow{F_z}(\overrightarrow{r})|\\
+			\Leftrightarrow \frac{G\cancel{m_s}}{r_s^2}&=\cancel{m_s}a_s\\
+			\Leftrightarrow \frac{G}{r_s^{\cancel{2}}}&=\frac{v_s^2}{\cancel{r_s}}\\
+			\Leftrightarrow v_s &= \sqrt{G\frac{M_E}{r_s}}
+			\end{align*}
+		\end{enumeroman}
+	\end{enumeralph}
+\section*{Aufgabe 2:  Lösen von Bewegungsgleichungen}
+Betrachten Sie den Wurf eines Balles mit der Masse $m$ im konstanten Gravitationsfeld, d.h.eine Bewegung $\overrightarrow{r}(t)$ beschrieben durch die Bewegungsgleichung \[m\ddot{\overrightarrow{r}}(t) = \overrightarrow{F} = -mg\overrightarrow{e_z}\] mit den Anfangsbedingungen$\overrightarrow{r}(0) = (0,0,0)^\top$ und $\overrightarrow{v}(0) = (v\cos\alpha,0,v\sin\alpha)^\top$, wobei $\alpha$ den anfänglichen Wurfwinkel zum Erdboden bezeichnet und $g\approx9.81\frac{m}{s^2}$ die Erdbeschleunigung ist, die in negative $z$-Richtung wirkt.
+\begin{enumeralph}
+	\item Bestimmen Sie die Form der Bahnkurve, indem Sie die Bewegungsgleichung unter Benutzung der Anfangsbedingungen integrieren, und berechnen Sie dadurch $\overrightarrow{r}(t)$.  Gehen Sie komponentenweise vor.  Welche Form haben $x(t)$ und $z(t)$?  Drücken Sie zuletzt $z$ in Abhängigkeit von $x$ aus.  Welcher Form entspricht $z(x)$?
+	\begin{align*}
+	\ddot{x}(t) &= 0,& \dot{x}(t) &= v \cos\alpha,&  x(t) &= v\cos(\alpha) t\\
+	\ddot{y}(t) &= 0,& \dot{y}(t) &= 0,&  y(t) &= 0\\
+	\ddot{z}(t) &= -g,& \dot{z}(t) &= v \sin(\alpha) - gt,&  z(t) &= v \sin(\alpha)t - \frac{1}{2}gt^2\\
+	&\Rightarrow x(t) \text{ linear}, z(t) \text{ parabel}
+	\end{align*}
+	\begin{align*}
+	x &= v\cos(\alpha)t\\
+	\Rightarrow t &= \frac{x}{v\cos\alpha}\\
+	\text{Einsetzen: } z(x) &= \frac{\cancel{v}\sin(\alpha)x}{\cancel{v}\cos\alpha}-\frac{1}{2}g(\frac{x}{v\cos\alpha})^2\\
+	&=x\tan\alpha - \frac{gx^2}{2v^2\cos^2\alpha}\\
+	&\Rightarrow z(x) \text{ parabel}
+	\end{align*}
+	\item Bei welchem anfänglichen Winkel $\alpha_{max}$ erreicht man die maximale Wurfdistanz $x_{max}$? \textit{Hinweis}:  Hierfür muss zunächst die Zeit $t_{fin}$ berechnet werden, wobei $z(t_{fin}) = 0$, welche eingesetzt in $x(t)$ eine Gleichung für $x(\alpha)$ ergibt.  Für ein bestimmtes $\alpha_{max}$ erreicht $x(\alpha)$ ein Maximum $x_{max}$.
+	\begin{align*}
+	z(t_{fin}) &\overset{!}{=} 0\\
+	\Leftrightarrow v\sin(\alpha)t_{fin}-\frac{1}{2}gt_{fin}^2&=0\\
+	t_{fin}&=\frac{-2v\sin\alpha}{-g}\\
+	&=2v\frac{\sin\alpha}{g}\\
+	x(t_{fin})&=v\cos(\alpha)2v\frac{\sin\alpha}{g}\\
+	&=2v^2\frac{\sin\alpha\cos\alpha}{g}\\
+	&\Rightarrow x\text{ maximal für } \sin\alpha\cos\alpha \text{ maximal}\\
+	\Rightarrow \alpha_{max} &=\frac{\pi}{4}
+	\end{align*}
+\end{enumeralph}
+
+\section*{Aufgabe 3: Bewegungsgleichungen durch Lagrange - Atwood'sche Fallmaschine}
+Im dreidimensionalen Raum im Schwerefeld der Erde mit Beschleunigung $g$ ist im Ursprung eine frei drehbare Rolle befestigt. Über diese läuft eine Schnur mit fester Länge $l$, die zwei Massen $m_1$ an Position $z_1$ und $m_2$ an Position $z_2$ verbindet, die sich in nur $z$-Richtung frei bewegen können.  Somit können Sie die $x$- und $y$-Richtung vernachlässigen.
+\begin{enumeralph}
+	\item Welche Zwangsbedingungen gibt es?  Finden Sie passende generalisierte Koordinaten für die verbleibenden Freiheitsgrade.
+	\begin{align*}
+	\text{Zwangsbedingung: }l &= -z_1 -z_2\\
+	z_2&=-z_1-l\\
+	\dot{z_2}&=\dot{z_1}\\
+	&\Rightarrow \text{Generalisierte Koordinate }z_1
+	\end{align*}
+	\item Stellen Sie die Lagrange-Funktion auf, indem Sie zuvor folgende Schritte ausführen:
+	\begin{enumeroman}
+		\item Beginnen Sie mit dem Potential $V$ des Gesamtsystems (beide Massen).  Das Potential einer Masse $m$ im Schwerefeld ist gegeben durch $V=mgz$.
+		\begin{align*}
+		V&=m_1gz_1+m_2gz_2\\
+		&=g(m_1z_1+m_2z_2)\\
+		&=g(m_1z_1+m_2(-z_1-l))\\
+		&=gz_1(m_1-m_2)-gm_2l
+		\end{align*}
+		\item Berechnen Sie nun die kinetische Gesamtenergie $T$ des Systems.
+		\begin{align*}
+		T&=\frac{1}{2}m_1\dot{z_1}^2+\frac{1}{2}m_2\dot{z_2}^2\\
+		&=\frac{1}{2}\dot{z_1}^2(m_1+m_2)\\
+		L&=T-V\\
+		&=\frac{1}{2}\dot{z_1}^2(m_1+m_2) -gz_1(m_1-m_2)+gm_2l
+		\end{align*}
+	\end{enumeroman}
+\item Bestimmen Sie nun die Bewegungsgleichungen mit Hilfe der Euler-Lagrange-Gleichungen.
+\begin{align*}
+\text{Euler-Lagrange-Gleichung: } \frac{\partial L}{\partial\q}-\frac{d}{dt}\frac{\partial L}{\partial \dot{\q}}&\overset{!}{=}0\\
+\frac{\partial L}{\partial z_1}&=-g(m_1-m_2)\\
+\frac{\partial L}{\partial \dot{z_1}}&=\dot{z_1}(m_1+m_2)\\
+\Rightarrow \frac{d}{dt}\frac{\partial L}{\partial \dot{z_1}}&=\ddot{z_1}(m_1+m_2)\\
+\text{Eingesetzt: }-g(m_1-m_2)-\ddot{z_1}(m_1+m_2)&=0\\
+\Rightarrow \ddot{z_1}&=-g\frac{m_1-m_2}{m_1+m_2}
+\end{align*}
+\end{enumeralph}
+
+\section*{Aufgabe 4: Perle auf rotierendem Draht\footnote{schwierig, vermutlich nicht Klausurrelevant}}
+An einer vertikalen Achse, die sich mit der Winkelgeschwindigkeit $\omega$ dreht, ist unter dem Winkel $\alpha$ ein gerader Draht befestigt, auf dem eine Perle der Masse $m$ gleitet.
+\begin{enumeralph}
+	\item Stelle die Lagrangegleichung 1.  Art für die Zylinderkoordinaten $z,r,\varphi$ auf und löse die Bewegungsgleichung von $z(t)$ für die Anfangsbedingungen $z(0) =   \dot{z}(0) = 0$.
+	\begin{subequations}
+	\begin{align*}
+	\text{Zylinderkoordinaten:}&\ r, z, \varphi\\
+	\text{Zwangsbedingungen:}\\
+	f_1(z,r\varphi)&=r+z\tan\alpha=0\\
+	f_2(z,r,\varphi)&=\varphi-\omega t=0\\
+	L&=\frac{m}{2}(z^2+r^2+\varphi^2)-mgz\\
+	\text{Komponenten:}\\
+	z: m\ddot{z}+mg&=\tan\alpha\lambda_1\\
+	r: m\overrightarrow{r} - mr\varphi^2&=\lambda_1\tag{*} \label{eqn}\\
+	m\frac{d}{dt}(r^2\ddot{\varphi})&=\lambda_2\\
+	\text{Zwangsbedingungen einsetzen:}\\
+	m\ddot{z}+mg&=\tan\alpha\lambda_1m\tan\alpha(z\omega^2-\ddot{z})=\lambda_1\\
+	m\tan^2\alpha\frac{d}{dt}z^2\omega&=\lambda_2\\
+	\Rightarrow \ddot{z}-\omega^2z\sin^2\alpha-g\cos^2\alpha&=0\\
+	\text{Ansatz:}\\
+	z(t)&=a_1\mathrm{e}^{\omega t\sin\alpha}+a_2\mathrm{e}^{-\omega t\sin\alpha}+\frac{g}{\omega^2}\cot^2\alpha\\
+	\overset{\text{Anfangsbedingungen}}{\Rightarrow}z(t)&=\frac{g}{\omega^2}\cos\alpha(\cosh(\omega t\sin\alpha)-1)\\
+	\lambda_1, \lambda &\rightarrow  \text{(\ref{eqn}) einsetzen}
+	\end{align*}
+\end{subequations}
+	\item Berechne  die  Energie  der  Perle  und  zeige,  dass  der  Energiegewinn  durch  rheonome Zwangsarbeit verursacht wird.
+	\begin{align*}
+	\text{Energie: }E(t)&=\frac{m}{2}(\dot{z}^2+\dot{r}^2\omega^2)+mgz\\
+	&=m\cot^2\alpha\frac{g^2}{\omega^2}(\cosh(\omega t \sin\alpha)-1)^2\\
+	\text{Energiegewinn}&\leftrightarrow\lambda_2\\
+	\int_{0}^{\varphi}\lambda_2(\varphi')\mathrm{d}\varphi'&=m\cot^2\alpha\frac{g^2}{\omega^2}\int_{0}^{\sin\alpha}(\cosh x -1)\sinh x \mathrm{d}x\\
+	&=2m\cot^2\alpha\frac{g^2}{\omega^2}\left[\frac{1}{4}\cosh(2x)-\cosh x\right]_0^{\omega t\sin\alpha}\\
+	%unvollständig?
+	\end{align*}
+\end{enumeralph}
+\end{document}
