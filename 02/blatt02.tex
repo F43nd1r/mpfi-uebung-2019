@@ -1,0 +1,152 @@
+ \input{../preamble.tex} 
+ 
+ \begin{document}
+ 	\section*{Aufgabe 1:  Lagrange Methode 2. Art - Starre Stangen}
+ 	\begin{figure}[!h]
+ 		\centering
+ 	\begin{tikzpicture}[scale=1.4]
+ 	\coordinate (p) at (0,0);
+ 	\coordinate (m1) at (-1,-2);
+ 	\coordinate (m2) at (1,-0.5);
+ 	\coordinate (down) at (0,-1);
+ 	\draw[->] (0,-2) --(0,1) node[above]{$y$};
+ 	\draw[->](-1.5,0) -- (1.5,0) node[above]{$x$};
+ 	\draw[very thick,->](-1.8,0) -- (-1.8, -0.5) node[right,pos=0.5]{$\overrightarrow{g}$};
+ 	\draw[mark=none] (p) node[above right]{$P$};
+ 	\draw[very thick,-](p) -- (m2) node[pos=0.7,above]{$l_2$};
+ 	\draw[very thick,-](p) -- (m1) node[pos=0.5,above]{$l_1$};
+ 	\draw[very thick,-](m1) -- (m2) node[pos=0.7,below]{$l_3$};
+ 	\filldraw (m2) circle (2pt) node[right]{$m_2$} ;
+ 	\filldraw (m1) circle (1pt) node[below]{$m_2$} ;
+ 	\pic [draw, -, angle eccentricity=0.5, "$\boldsymbol{\cdot}$"] {angle = m1--p--m2};
+ 	\pic [draw, ->, angle eccentricity=0.8, angle radius=30pt, "$\varphi$"] {angle = down--p--m2};
+ 	\end{tikzpicture}
+ \end{figure}
+Gegeben ist eine Anordnung wie in der Skizze dargestellt, in der zwei Massen $m_1$ und $m_2$ mittels masseloser starrer Stangen mit Längen $l_1$ und $l_2$ mit einem Aufhängepunkt verbunden sind.Die beiden Massen sind über eine weitere starre masselose Stange der Länge $l_3=\sqrt{l_1^2+l_2^2}$ miteinander verbunden. Die Anordnung kann um den Aufhängepunkt $P$ im Schwerefeld der Erde schwingen.
+\begin{enumeralph}
+	\item Wie lauten die Zwangsbedingungen?
+	\begin{align*}
+	f_1&=x_1^2+y_1^2-l_1^2\\
+	f_2&=x_2^2+y_2^2-l_2^2\\
+	f_3&=(x_1-x_2)^2+(y_1-y_2)^2-l_3^2\\
+	\end{align*}
+	\item Stellen Sie die Lagrange Gleichungen zweiter Art auf.
+	\begin{align*}
+		\text{Verallgemeinerte Koordinate: }\varphi\\
+		x_1&=-l_1\cos\varphi\\
+		x_2&=-l_2\sin\varphi\\
+		y_1&=-l_1\sin\varphi\\
+		y_2&=-l_2\sin\varphi\\
+		L&=\frac{1}{2}m_1l_1^2\dot{\varphi}^2+\frac{1}{2}m_2l_2^2\dot{\varphi}^2 - (-m_1gl_1\sin\varphi-m_2gl_2\cos\varphi)\\
+		\text{Bewegungsgleichung:}\\
+		(m_1l_1^2+m_2l_2^2)\ddot{\varphi}&=g(m_1l_1\cos\varphi - m_2l_2\sin\varphi)
+	\end{align*}
+	\item Bestimmen Sie die Gleichgewichtspositionen und die Schwingungsfrequenz um die stabile Gleichgewichtslage.
+	\begin{align*}
+	m_1l_1\cos\varphi&=m_2l_2\sin\varphi \text{ (Beide Beschleunigungen gleich groß)}\\
+	\Rightarrow\frac{m_1l_1}{m_2l_2}&=\frac{\sin\varphi}{\cos\varphi}=\tan\varphi\\
+	\Rightarrow\varphi_G&=\arctan(\frac{m_1l_1}{m_2l_2})\hspace{1cm}0\leq\varphi_G\leq\frac{\pi}{2}\\
+	\text{Stabiles Gleichgewicht: }\varphi &= \varphi_G + \delta\\
+	\text{In Bewegungsgleichung:}\\
+	(m_1l_1^2 + m_2l_2^2)(\ddot{\varphi_G} + \ddot{\delta}) &= g(m_1l_1(\cos\varphi_G-\delta\sin\varphi_G+\mathcal{O}(\delta^2))-m_2l_2(\sin\varphi_G -\delta\cos\varphi_G+\mathcal{O}(\delta^2)))\\
+	\overset{\varphi_G\ \mathrm{const.}}{\Rightarrow}(m_1l_1^2 + m_2l_2^2)\ddot{\delta} &= g(m_1l_1(\cos\varphi_G-\delta\sin\varphi_G+\mathcal{O}(\delta^2))-m_2l_2(\sin\varphi_G -\delta\cos\varphi_G+\mathcal{O}(\delta^2)))\\
+	&\approx-g(m_1l_1\sin\varphi_G+m_2l_2\cos\varphi_G)\delta\\
+	&=-\delta g\sqrt{(m_1l_1)^2+(m_2l_2)^2}\\
+	\Rightarrow \omega^2&=g\frac{\sqrt{(m_1l_1)^2+(m_2l_2)^2}}{m_1l_1^2 + m_2l_2^2}
+	\end{align*}
+	\item Bestimmen Sie die Zwangskräfte, welche die Stangen im stabilen Gleichgewicht auf die Massenpunkte $m_1$ und $m_2$ ausüben.
+	\begin{align*}
+	m_i\ddot{\overrightarrow{r_i}}&=\overrightarrow{F_i}+\sum_{\mu=1}^{N}\lambda_\mu(t)\frac{\partial}{\partial\overrightarrow{r_i}}A_\mu(\overrightarrow{r_1},...,\overrightarrow{r_N},t)\\
+	A_\mu(\overrightarrow{r_1},...,\overrightarrow{r_N},t)&=0\hspace{1cm}i=1..N,\mu=1..N_z\\
+	\vect{0\\0}&=m_1\vect{0\\-g}+2\lambda_1\vect{x_1\\y_1}+2\lambda_3\vect{x_1-x_2\\y_1-y_2}\\
+	\vect{0\\0}&=m_2\vect{0\\-g}+2\lambda_2\vect{x_2\\y_2}+2\lambda_3\vect{x_1-x_2\\y_1-y_2}\\
+	\lambda_1&=\frac{-m_1g(m_1+m_2)}{2\sqrt{(m_1l_1)^2+(m_2l_2)^2}}\\
+	\lambda_2&=\frac{-m_2g(m_1+m_2)}{2\sqrt{(m_1l_1)^2+(m_2l_2)^2}}\\
+	\end{align*}
+\end{enumeralph}
+
+\section*{Aufgabe 2: Lagrange Methode 1. und 2. Art - Perle auf Stab}
+Eine Perle gleitet reibungsfrei und ohne äußere Kräfte auf einem Stab, der sich in der $x$-$y$-Ebene mit konstanter Winkelgeschwindigkeit $\omega$ um den Ursprung dreht.
+\begin{enumeralph}
+	\item Stellen Sie die Bewegungsgleichung mit Hilfe der Lagrange Gleichungen erster Art auf und lösen Sie die Bewegungsgleichung. Führen Sie die Rechnung in Zylinderkoordinaten durch. Wie lautet die Zwangskraft und was ist ihre Bedeutung? Ist die Energie in diesem System erhalten?
+\begin{align*}
+\text{Zwangsbedinungen:}\\
+f1&=\varphi-\omega t = 0\\
+f2&=z=0\\
+\text{Lagrange Multipliaktor: }m\ddot{x}&=\lambda\overrightarrow{\nabla}f\hspace{1cm}\overrightarrow{\nabla}f \text{ Zylinderkoordinaten}\\
+\nabla f&=\hat{e_\varrho}\frac{\partial f}{\partial \varrho}+\hat{e_\varphi}\frac{1}{\varphi}\frac{\partial f}{\partial\varphi}\hspace{1cm}\varrho\text{ Radius}\\
+\text{Ortsvektor in $x$-$y$-Ebene }\overrightarrow{x}&=\varrho\hat{e_\varrho}\\
+\text{Beschleunigung }\ddot{\overrightarrow{x}}&=(\ddot{\varrho}-\varrho\dot{\varphi}^2)\hat{e_\varrho}+(\varrho\ddot{\varphi}+2\dot{\varrho}\dot{\varphi})\hat{e_\varphi}\\
+\dot{\varphi}&=\omega=\text{const.}\\
+\Rightarrow\ddot{\overrightarrow{x}}&=(\ddot{\varrho}-\varrho\dot{\varphi}^2)\hat{e_\varrho}+2\dot{\varrho}\dot{\varphi}\hat{e_\varphi}\\
+m\ddot{\varrho}-m\varrho\dot{\varphi}^2&=\lambda\frac{\partial f}{\partial \varrho}\\
+m\varrho\ddot{\varphi}+2m\dot{\varrho}\dot{\varphi}&=\frac{\lambda}{\varrho}\frac{\partial f}{\partial \varphi}\\
+ \frac{\partial f}{\partial \varrho}&=0\hspace{1cm}\frac{\partial f}{\partial \varphi}=1\\
+ \Rightarrow\ddot{f}&=\ddot{\varphi}=0\\
+ \Rightarrow\lambda&=2m\varrho\dot{\varrho}\dot{\varphi}\\
+ \Rightarrow m\ddot{\varrho}-m\varrho\ddot{\varphi}^2&=0\\
+ \Rightarrow m\varrho\ddot{\varphi}&=0\\
+ \dot{\varphi}&=\omega=\text{const.}\\
+ \Rightarrow\ddot{\varrho}=\omega^2\varrho\\
+ \text{Lösen der Bewegungsgleichung ($\varrho\neq0$)}\\
+ \varrho(t)&=\varrho_+\mathrm{e}^{\omega t}+ \varrho_-\mathrm{e}^{\omega t}\\
+ \text{Zentrifugalkraft }\overrightarrow{z}=\lambda\nabla f=2m\dot{\varrho}\omega\hat{e_\varphi}\\
+ \text{Energie: }V&=0\\
+ \frac{\mathrm{d}T}{\mathrm{d}t}&=2m\varrho\dot{\varrho}\dot{\varphi}\omega\\
+ \Rightarrow \text{Energie nicht erhalten}
+\end{align*}
+\item Formulieren Sie nun die Bewegungsgleichung unter Verwendung der Lagrange Gleichung 2. Art.
+\begin{align*}
+V&=0\\
+L&=T=\frac{m}{2}(\dot{\varrho}^2+\varrho\omega^2)\\
+\Rightarrow \ddot{\varrho}&=\omega^2\varrho
+\end{align*}
+\end{enumeralph}
+
+\section*{Aufgabe 3: Erhaltungsgrößen - Bewegung im kugelsymmetrischen Potential}
+Die Bewegung eines Teilchens in einem kugelsymmetrischen Potential $V$ soll mittels Kugelkoordinaten $(r,\vartheta,\varphi)$ beschrieben werden. Diese sind gegeben durch
+\[\overrightarrow{r}=\vect{x\\y\\z}=\vect{r\cos\varphi\sin\vartheta\\r\sin\varphi\sin\vartheta\\r\cos\vartheta}\]
+Die Parameter bewegen sich in folgenden Bereichen: $r>0,\varphi\in[0,2\pi),\vartheta\in[0,\pi]$.
+\begin{enumeralph}
+	\item Ermitteln Sie zunächst die kinetische Energie $T=\frac{1}{2}m\dot{\overrightarrow{r}}^2$ des Teilchens in Kugelkoordinaten. Führen Sie die folgende Schritte aus:
+	\begin{enumeroman}
+		\item Bestimmen Sie die Richtungsvektoren $\overrightarrow{r_{q_i}}$ für die Kugelkoordinaten $q_i=(r,\vartheta,\varphi)$ mittels $\overrightarrow{r_{q_i}}=\frac{\partial\overrightarrow{r}}{\partial q_i}$ und bilden Sie die normierten Einheitsvektoren $\overrightarrow{e_{q_i}}=\frac{\overrightarrow{r_{q_i}}}{|\overrightarrow{r_{q_i}}|}$.
+		\begin{align*}
+		\overrightarrow{r_r}&=\frac{\partial \overrightarrow{r}}{\partial r} = \vect{\cos\varphi\sin\vartheta\\\sin\varphi\sin\vartheta\\\cos\vartheta}\\
+		\overrightarrow{r_\vartheta}&=\frac{\partial \overrightarrow{r}}{\partial \vartheta} = \vect{r\cos\varphi\cos\vartheta\\r\sin\varphi\cos\vartheta\\-r\sin\vartheta}\\
+		\overrightarrow{r_\varphi}&=\frac{\partial \overrightarrow{r}}{\partial \varphi} = \vect{-r\sin\varphi\sin\vartheta\\r\cos\varphi\sin\vartheta\\0}\\
+		|\overrightarrow{r_r}|&=\sqrt{\cos^2\varphi\sin^2\vartheta+\sin^2\varphi\sin^2\vartheta+\cos^2\vartheta} = 1\\
+		|\overrightarrow{r_\vartheta}|&=r\\
+		|\overrightarrow{r_\varphi}|&=r\sin\vartheta\\
+		\overrightarrow{e_r}&=\overrightarrow{r_r}=\vect{\cos\varphi\sin\vartheta\\\sin\varphi\sin\vartheta\\\cos\vartheta}\\
+		\overrightarrow{e_\varphi}&=\frac{\overrightarrow{r_\varphi}}{r} = \vect{\cos\varphi\cos\vartheta\\\sin\varphi\cos\vartheta\\-\sin\vartheta}\\
+		\overrightarrow{e_\varphi}&=\frac{\overrightarrow{r_\varphi}}{r\sin\vartheta}=\vect{-\sin\varphi\\\cos\varphi\\0}\\
+		\end{align*}
+		\item Zeigen Sie, dass Sie $\dot{\overrightarrow{r}}=\frac{\mathrm{d}\overrightarrow{r}}{\mathrm{d}t}=\sum_{i=1}^{3}\frac{\mathrm{d}\q_i}{\mathrm{d}t}\frac{\mathrm{d}\overrightarrow{r}}{\mathrm{d}\q_i}$ mit Hilfe der Einheitsvektoren schreiben können als 
+	\[\dot{\overrightarrow{r}}=\dot{r}\overrightarrow{e_r}+r\dot{\vartheta}\overrightarrow{e_\vartheta}+r\sin(\vartheta)\dot{\varphi}\overrightarrow{e_\varphi}\]
+	\begin{align*}
+	\dot{\overrightarrow{r}}&=\sum_{i=1}^{3}\frac{\mathrm{d}\q_i}{\mathrm{d}t}\frac{\mathrm{d}\overrightarrow{r}}{\mathrm{d}\q_i}\\
+	&=\dot{r}\overrightarrow{e_r}+r\dot{\vartheta}\overrightarrow{e_\vartheta}+r\sin(\vartheta)\dot{\varphi}\overrightarrow{e_\varphi}\\
+	&=\frac{\mathrm{d}r}{\mathrm{d}t}\overrightarrow{r_r}+\frac{\mathrm{d}\vartheta}{\mathrm{d}t}\overrightarrow{r_\vartheta}+\frac{\mathrm{d}\varphi}{\mathrm{d}t}\overrightarrow{r_\varphi}\\
+	&=\frac{\mathrm{d}r}{\mathrm{d}t}\overrightarrow{e_r}+\frac{\mathrm{d}\vartheta}{\mathrm{d}t}r\overrightarrow{e_\vartheta}+\frac{\mathrm{d}\varphi}{\mathrm{d}t}r\sin(\vartheta)\overrightarrow{e_\varphi}\\
+	&=\dot{r}\overrightarrow{e_r}+\dot{\vartheta}r\overrightarrow{e_\vartheta}+\dot{\varphi}r\sin(\vartheta)\overrightarrow{e_\varphi}\\
+	\end{align*}
+	\item Berechnen Sie nun die kinetische Energie $T$ in Kugelkoordinaten. Sie können hierbei die Orthonormalität der Einheitsvektoren nutzen.
+	\begin{align*}
+		T&=\frac{1}{2}mv^2\\
+		&=\frac{1}{2}m\dot{\overrightarrow{r}}^2\\
+		&=\frac{1}{2}m(\dot{r}^2+r^2\dot{\vartheta}^2+r^2\sin^2(\vartheta)\dot{\varphi}^2)
+	\end{align*}
+	\end{enumeroman}
+\item Bilden Sie die Lagrange-Funktion $L$ für ein Teilchen mit Masse $m$ im kugelsymmetrischen Potential $V=V(r,t)$. Welche Koordinate $\q_i= (r,\vartheta,\varphi)$ ist zyklisch? Ermitteln Sie den dazugehörigen zeitlich konstant verallgemeinerten Impuls $p_i=\frac{\partial L}{\partial\dot{\q_i}}$.
+\begin{align*}
+L&=T-V\\
+&=\frac{1}{2}m(\dot{r}^2+r^2\dot{\vartheta}^2+r^2\sin^2(\vartheta)\dot{\varphi}^2)-V(r,t)\\
+\text{$\varphi$ kommt nicht vor}&\rightarrow\text{$\varphi$ zyklisch}\\
+\frac{\partial L}{\partial\varphi}&=0\\
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot{\varphi}}&=0\\
+p_\varphi&=\frac{\partial L}{\partial\dot{\varphi}}\\
+&=mr^2\sin^2(\vartheta)\varphi\\
+\end{align*}
+\end{enumeralph}
+ \end{document}

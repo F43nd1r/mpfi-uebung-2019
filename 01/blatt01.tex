@@ -72,8 +72,6 @@ Betrachten Sie den Wurf eines Balles mit der Masse $m$ im konstanten Gravitation
 	\ddot{y}(t) &= 0,& \dot{y}(t) &= 0,&  y(t) &= 0\\
 	\ddot{z}(t) &= -g,& \dot{z}(t) &= v \sin(\alpha) - gt,&  z(t) &= v \sin(\alpha)t - \frac{1}{2}gt^2\\
 	&\Rightarrow x(t) \text{ linear}, z(t) \text{ parabel}
-	\end{align*}
-	\begin{align*}
 	x &= v\cos(\alpha)t\\
 	\Rightarrow t &= \frac{x}{v\cos\alpha}\\
 	\text{Einsetzen: } z(x) &= \frac{\cancel{v}\sin(\alpha)x}{\cancel{v}\cos\alpha}-\frac{1}{2}g(\frac{x}{v\cos\alpha})^2\\
@@ -141,29 +139,37 @@ An einer vertikalen Achse, die sich mit der Winkelgeschwindigkeit $\omega$ dreht
 	\text{Zwangsbedingungen:}\\
 	f_1(z,r\varphi)&=r+z\tan\alpha=0\\
 	f_2(z,r,\varphi)&=\varphi-\omega t=0\\
-	L&=\frac{m}{2}(z^2+r^2+\varphi^2)-mgz\\
+	L&=\frac{m}{2}(\dot{z}^2+\dot{r}^2+r^2\dot{\varphi}^2)-mgz\\
 	\text{Komponenten:}\\
 	z: m\ddot{z}+mg&=\tan\alpha\lambda_1\\
-	r: m\overrightarrow{r} - mr\varphi^2&=\lambda_1\tag{*} \label{eqn}\\
-	m\frac{d}{dt}(r^2\ddot{\varphi})&=\lambda_2\\
+	r: m\ddot{r} - mr\dot{\varphi}^2&=\lambda_1\\
+	m\frac{d}{dt}(r^2\dot{\varphi})&=\lambda_2\\
 	\text{Zwangsbedingungen einsetzen:}\\
-	m\ddot{z}+mg&=\tan\alpha\lambda_1m\tan\alpha(z\omega^2-\ddot{z})=\lambda_1\\
+	m\ddot{z}+mg&=\tan\alpha\lambda_1\\
+	m\tan\alpha(z\omega^2-\ddot{z})&=\lambda_1\tag{*} \label{eqn}\\
 	m\tan^2\alpha\frac{d}{dt}z^2\omega&=\lambda_2\\
-	\Rightarrow \ddot{z}-\omega^2z\sin^2\alpha-g\cos^2\alpha&=0\\
+	\Rightarrow \ddot{z}-\omega^2z\sin^2\alpha+g\cos^2\alpha&=0\\
+	\end{align*}
+	\begin{align*}
 	\text{Ansatz:}\\
 	z(t)&=a_1\mathrm{e}^{\omega t\sin\alpha}+a_2\mathrm{e}^{-\omega t\sin\alpha}+\frac{g}{\omega^2}\cot^2\alpha\\
-	\overset{\text{Anfangsbedingungen}}{\Rightarrow}z(t)&=\frac{g}{\omega^2}\cos\alpha(\cosh(\omega t\sin\alpha)-1)\\
-	\lambda_1, \lambda &\rightarrow  \text{(\ref{eqn}) einsetzen}
+	\overset{\text{Anfangsbedingungen}}{\Rightarrow}z(t)&=-\frac{g}{\omega^2}\cot^2\alpha(\cosh(\omega t\sin\alpha)-1)\\
+	\Rightarrow r(t)&=\frac{\cot\alpha g}{\omega^2}(\cosh(\omega t\sin\alpha)-1)\\
+	z(t) \text{ einsetzen in (\ref{eqn}):}\\
+	\lambda_1(t)&=mg\cot\alpha(1-\cos^2\alpha\cosh(\omega t\sin\alpha))\\
+	\lambda_2(t)&=2m\frac{g^2}{\omega^2}\cos\alpha\cot\alpha(\cosh(\omega t\sin\alpha)-1)\sinh(\omega t\sin\alpha)
 	\end{align*}
 \end{subequations}
 	\item Berechne  die  Energie  der  Perle  und  zeige,  dass  der  Energiegewinn  durch  rheonome Zwangsarbeit verursacht wird.
 	\begin{align*}
-	\text{Energie: }E(t)&=\frac{m}{2}(\dot{z}^2+\dot{r}^2\omega^2)+mgz\\
+	\text{Energie: }E(t)&=\frac{m}{2}(\dot{z}^2+\dot{r}^2+r^2\omega^2)+mgz\\
 	&=m\cot^2\alpha\frac{g^2}{\omega^2}(\cosh(\omega t \sin\alpha)-1)^2\\
 	\text{Energiegewinn}&\leftrightarrow\lambda_2\\
-	\int_{0}^{\varphi}\lambda_2(\varphi')\mathrm{d}\varphi'&=m\cot^2\alpha\frac{g^2}{\omega^2}\int_{0}^{\sin\alpha}(\cosh x -1)\sinh x \mathrm{d}x\\
+	\int_{0}^{\varphi}\lambda_2(\varphi')\mathrm{d}\varphi'&=\omega\int_{0}^{t}\lambda_2(t')\mathrm{d}t'\\
+	&=2m\cot^2\alpha\frac{g^2}{\omega^2}\int_{0}^{\omega t\sin\alpha}(\cosh x -1)\sinh x \mathrm{d}x\\
 	&=2m\cot^2\alpha\frac{g^2}{\omega^2}\left[\frac{1}{4}\cosh(2x)-\cosh x\right]_0^{\omega t\sin\alpha}\\
-	%unvollständig?
+	&=E(t)\\
+	\text{wobei die Substitution }x&=\omega t \sin\alpha \text{ verwendet wurde.}
 	\end{align*}
 \end{enumeralph}
 \end{document}
